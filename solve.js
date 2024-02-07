@@ -1,5 +1,5 @@
 function calculateMoney(ticketSale) {
- if (!Number.isInteger(ticketSale) || ticketSale < 0) {
+ if (isNaN(ticketSale) || ticketSale < 0) {
      return "Invalid Number";
  }
  var earning = ticketSale * 120;
@@ -7,6 +7,7 @@ function calculateMoney(ticketSale) {
  var dueMoney = earning - cost ;
  return dueMoney;
 }
-console.log(calculateMoney(10));
+// console.log(calculateMoney(-2));
+
 
 
