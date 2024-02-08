@@ -1,6 +1,6 @@
 function calculateMoney(ticketSale) {
  if (ticketSale <= 0) {
-     return "Invalid Number";
+     return "Please enter a Valid number here";
  }
  let earning = ticketSale * 120;
  let cost = 500 + (8 * 50);
@@ -8,40 +8,40 @@ function calculateMoney(ticketSale) {
  return dueMoney;
 }
 
-// // task-2
-function checkName(name) {
-    
+function checkName(name)  {
     if (typeof name === 'string') {
         name = name.toLowerCase();
-        const rightEnd = ['a', 'y', 'i', 'e', 'o', 'u', 'w'];
-        const FinalChar = name.charAt(name.length - 1);
-        if (rightEnd.includes(FinalChar )) {
+        const endLetter= ['a', 'y', 'i', 'e', 'o', 'u', 'w'];
+        const Final= name.charAt(name.length - 1);
+     for  ( let letter of endLetter) {
+        if (letter===Final) {
+        
             return "Good Name";
         }
+    }
         return "Bad Name";
     }
   else{
-    return "invaild"
+    return "invalid"
   }
 } 
-// task-3
 function deleteInvalids(array) {
     if (!Array.isArray(array)) {
         return "Please enter an array here";
     }
     return array.filter(element => typeof element === 'number' && !isNaN(element));
 }
-// task-4
+
 function password(obj) {
-    if (!obj.hasOwnProperty('name') || !obj.hasOwnProperty('birthYear') || !obj.hasOwnProperty('placeName')
-     || obj.birthYear.toString().length !== 4) {
+    if (!obj.hasOwnProperty('name') || !obj.hasOwnProperty('birthYear') || !obj.hasOwnProperty('siteName') ||
+obj.birthYear.toString().length !== 4) {
         return "invalid";
     }
-    const firsDocument = obj.placeName.charAt(0).toUpperCase();
-    const password = `${obj.placeName}#${obj.name}@${obj.birthYear}`;
-    return password;
+    const primaryLetter = obj.siteName.trim().charAt(0).toUpperCase();
+    const smallName = primaryLetter + obj.siteName.slice(1); 
+    const password = smallName + '#' + obj.name + '@' + obj.birthYear;
+  return password.charAt(0).toUpperCase() + password.slice(1);
 }
-// task-5
 
 function monthlySavings(arr, livingCost) {
     if (Array.isArray(arr) && typeof livingCost === "number") {
@@ -65,10 +65,3 @@ function monthlySavings(arr, livingCost) {
     }
 }
 
-console.log(monthlySavings([ 1000 , 2000 , 3000 ] , 5400)); 
-
-console.log(monthlySavings([ 1000 , 2000 , 2500 ] , 5000)); 
-
-console.log(monthlySavings([ 900 , 2700 , 3400] , 10000)); 
-
-console.log(monthlySavings(100, [ 900 , 2700 , 3400])); 
