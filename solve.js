@@ -43,29 +43,32 @@ function password(obj) {
 }
 // task-5
 
-function monthlySavings(payments, livingCost) {
-    if (!Array.isArray(payments) || typeof livingCost !== 'number') {
+function monthlySavings(arr, livingCost) {
+    if (Array.isArray(arr) && typeof livingCost === "number") {
+        let totalPayment = 0;
+        for (let payment of arr) {
+            if (payment >= 3000) {
+                let amass = payment * 0.2;
+                totalPayment += payment - amass;
+            } else {
+                totalPayment += payment;
+            }
+        }
+        let taka = totalPayment - livingCost;
+        if (taka >= 0) {
+            return taka;
+        } else {
+            return "“earn more”";
+        }
+    } else {
         return "invalid input";
     }
-    let totalEarnings = 0;
-    for (let i = 0; i < payments.length; i++) {
-        if (typeof payments[i] !== 'number') {
-            return "invalid input";
-        }
-        totalEarnings += payments[i];
-    }
-    const tax = totalEarnings >= 3000 ? totalEarnings * 0.2 : 0;
-    const savings = totalEarnings - tax - livingCost;
-    if (savings <= 0) {
-        return "earn more";
-    }
-    return savings;
 }
-console.log(monthlySavings([1000, 2000, 3000], 5400)); 
-console.log(monthlySavings([1000, 2000, 2500], 5000)); 
-console.log(monthlySavings([900, 2700, 3400], 10000)); 
-console.log(monthlySavings(100, [900, 2700, 3400])); 
 
+console.log(monthlySavings([ 1000 , 2000 , 3000 ] , 5400)); 
 
+console.log(monthlySavings([ 1000 , 2000 , 2500 ] , 5000)); 
 
+console.log(monthlySavings([ 900 , 2700 , 3400] , 10000)); 
 
+console.log(monthlySavings(100, [ 900 , 2700 , 3400])); 
